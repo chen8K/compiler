@@ -45,26 +45,23 @@ exp:NUM
 
 
 %%
-int yylex()
-{
- int c;
-//跳过空格和制表符
- /*skip white space */
- while((c=getchar())==' '||c=='\t');
-/*is digit*/
-//将数字转换为非负整数
-if(c>='0'&&c<='9')
-{
-/*rewrite c*/
-ungetc(c,stdin);
-/*yylval give exp*/
-scanf("%d",&yylval);
-return NUM;
-}
-if(c==EOF)
-   return 0;
+int yylex(){
+	int c;
+	//跳过空格和制表符
+	/*skip white space */
+	while((c=getchar())==' '||c=='\t');
+	/*is digit*/
+	//将数字转换为非负整数
+	if(c>='0'&&c<='9'){
+		/*rewrite c*/
+		ungetc(c,stdin);
+		/*yylval give exp*/
+		scanf("%d",&yylval);
+		return NUM;
+	}
+	if(c==EOF)return 0;
 
- return c;
+	return c;
 }
 
 void yyerror(char *s){
